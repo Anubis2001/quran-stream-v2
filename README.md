@@ -18,25 +18,6 @@ This platform provides a seamless way to stream Quran recitations using HLS (HTT
 
     Zero Database – File-system based organization for simple management
 
-📁 Folder Structure
-text
-
-quran-stream-v2/
-│
-├── server.js              # Node.js server (Express)
-├── package.json           # Dependencies and scripts
-├── public/                # Static frontend files
-│   ├── index.html         # Main streaming interface
-│   ├── style.css          # Styling
-│   └── script.js          # Client-side logic (hls.js integration)
-│
-└── quran/                 # Root folder for recitations (created by user)
-    ├── reciter-name-1/    # Subfolder named after reciter
-    │   └── stream.m3u8    # Required M3U8 playlist file
-    ├── reciter-name-2/
-    │   └── stream.m3u8
-    └── reciter-name-3/
-        └── stream.m3u8
 
 Important Notes:
 
