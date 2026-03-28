@@ -1,0 +1,94 @@
+/* Body layout to keep footer at bottom */
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main radio container */
+.container {
+  background: rgba(0,0,0,0.6);
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 450px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  margin: auto;
+}
+
+/* Heading */
+h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #ffdd59;
+}
+p {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+/* Selector + Play button */
+.select-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+select {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  background: #ff6b6b;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover {
+  background: #ff4757;
+}
+
+/* Player Card */
+.player-card {
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.title {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+audio {
+  width: 100%;
+  border-radius: 8px;
+  outline: none;
+}
+
+/* Footer style */
+footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 12px;
+  color: #ddd;
+  background: rgba(0,0,0,0.5);
+  width: 100%;
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quran Radio (HLS Streaming)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>🎧 Quran Radio</h1>
+    <p>Select a Channel Below and Press Play</p>
+
+    <div class="select-group">
+      <select id="sheikhList"></select>
+      <button id="playBtn">Play</button>
+    </div>
+
+    <div class="player-card">
+      <div id="currentTitle" class="title">No Channel Selected</div>
+      <audio id="audioPlayer" controls></audio>
+      <p id="broadcastLink"></p>
+    </div>
+  </div>
+
+  <footer>&copy; 2026 Quran Radio</footer>
+
+  <!-- HLS.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+  <script>
+    async function loadSheikhs() {
+      const res = await fetch("/sheikhs");
+      const sheikhs = await res.json();
+      const select = document.getElementById("sheikhList");
+
+      sheikhs.forEach(name => {
+        const option = document.createElement("option");
+        option.value = name;
+        option.text = name;
+        select.add(option);
+      });
+    }
+
+    function playHLS() {
+      const select = document.getElementById("sheikhList");
+      const titleEl = document.getElementById("currentTitle");
+      const audio = document.getElementById("audioPlayer");
+      const linkEl = document.getElementById("broadcastLink");
+
+      if (!select.value) return;
+
+      const sheikh = select.value;
+      const hlsUrl = `/quran/${sheikh}/stream.m3u8`;
+
+      titleEl.textContent = "Now Playing: " + sheikh;
+
+      // Display broadcast link
+      linkEl.textContent = "Broadcast Link: " + window.location.origin + `/quran/${sheikh}/stream.m3u8`;
+
+      if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(hlsUrl);
+        hls.attachMedia(audio);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          audio.play();
+        });
+      } else {
+        // Native HLS support (Safari)
+        audio.src = hlsUrl;
+        audio.play();
+      }
+    }
+
+    document.getElementById("playBtn").addEventListener("click", playHLS);
+
+    loadSheikhs();
+  </script>
+
+</body>
+</html>
